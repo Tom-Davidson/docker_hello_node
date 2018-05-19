@@ -25,6 +25,10 @@
  - Get a full description with `kubectl describe services/hello-node`
  - Pull the NodePort into an environment variable for easier use with `export NODE_PORT=$(kubectl get services/hello-node -o go-template='{{(index .spec.ports 0).nodePort}}') && echo NODE_PORT=$NODE_PORT`
  - Open the app in a web browser: [http://<IP_OF_ANY_NODE>:<NODE_PORT>/](http://<IP_OF_ANY_NODE>:<NODE_PORT>/)
+ - Clean up with `kubectl delete service,deployment hello-node`
+
+## Deploying to kubernetes with the yaml file.
+ - `kubectl apply -f kubernetes.yaml` (apply is impdepotent so use instead of create which is just for creating). Using 1 file so the service is created first which causes the container's env vars to contain service info plus scheduling should spread them between hosts.
 
 ## Further Reading
 
